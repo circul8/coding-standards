@@ -1,53 +1,63 @@
 <?xml version="1.0"?>
-<ruleset name="Circul8">
-	<description>Circul8 Coding Standards</description>
-	<!-- Reference: https://github.com/juzna/nette-coding-standard/blob/master/NetteStandard/ruleset.xml //-->
+<ruleset name="Desirebull API">
+    <!-- Scan directory -->
+    <file>app</file>
 
-	<!-- Scan all files in directory -->
-	<file>.</file>
+    <!-- Scan only PHP files -->
+    <arg name="extensions" value="php"/>
 
-	<!-- Scan only PHP files -->
-	<arg name="extensions" value="php"/>
+    <!-- Ignore Laravel files -->
+    <exclude-pattern>Kernel.php</exclude-pattern>
+    <exclude-pattern>app/Http/Controllers/</exclude-pattern>
+    <exclude-pattern>app/Http/Middleware/</exclude-pattern>
+    <exclude-pattern>app/Providers/</exclude-pattern>
+    <exclude-pattern>app/Exceptions/</exclude-pattern>
 
-	<!-- Ignore WordPress and Composer dependencies -->
-	<exclude-pattern>web/wp</exclude-pattern>
-	<exclude-pattern>vendor/</exclude-pattern>
+    <!-- Show colors in console -->
+    <arg value="-colors"/>
 
-	<!-- Show colors in console -->
-	<arg value="-colors"/>
+    <!-- Show sniff codes in all reports -->
+    <arg value="ns"/>
 
-	<!-- Show sniff codes in all reports -->
-	<arg value="ns"/>
+    <!-- We use 4-width tab //-->
+    <arg name="tab-width" value="4"/>
 
-	<!-- We use 4-width tab //-->
-	<arg name="tab-width" value="2"/>
+    <!-- We use tabs -->
+    <rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
 
-	<rule ref="PSR2">
-		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/><!-- We use tabs -->
-		<exclude name="Generic.Files.LineLength"/><!-- Do not check line length //-->
-		<exclude name="Generic.PHP.LowerCaseConstant"/><!-- We use uppercase constants -->
-	</rule>
-	<rule ref="PSR2.Files.EndFileNewline"/>
-    <rule ref="PSR2.Files.EndFileNewline"/>
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing" >
+        <properties>
+            <property name="spacing" value="2" /><!-- Add 2 lines at the beginning of each method -->
+            <property name="spacingBeforeFirst" value="1" /><!-- Expect no new line after last method -->
+            <property name="spacingAfterLast" value="1" /><!-- Expect no new line after last method -->
+        </properties>
+    </rule>
 
-	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
-	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/><!-- We use tabs -->
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/><!-- We use short array syntax -->
-	<rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
-
-	<rule ref="Generic.WhiteSpace.ScopeIndent"><!-- We use tabs -->
-		<properties>
-			<property name="indent" value="4"/>
-			<property name="tabIndent" value="true"/>
-		</properties>
-	</rule>
-
-	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
-	<rule ref="Squiz.Classes.ValidClassName"/>
-	<rule ref="Squiz.WhiteSpace.FunctionSpacing" >
-		<properties>
-			<property name="spacing" value="2" /><!-- Add 2 lines at the beginning of each method -->
-			<property name="spacingAfterLast" value="0" /><!-- Expect no new line after last method -->
-		</properties>
-	</rule>
+    <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+        <!-- Allow new Class; instead of new Class(); //-->
+        <exclude name="SlevomatCodingStandard.ControlStructures.NewWithParentheses.MissingParentheses"/>
+        <!-- Allow AbstractClass naming. //-->
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+        <!-- Allow echo() instead of \echo() //-->
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions"/>
+        <!-- Allow usage of classes listed in "use" statement /-->
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+        <!-- Disallow yoda comparisons (42 === $value) /-->
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison"/>
+        <!-- Disallow one line property annotations /-->
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+        <properties>
+            <!-- Force \Exception instead of Exception //-->
+            <property name="allowFullyQualifiedGlobalClasses" value="true"/>
+            <!-- Force \JSON_PRETTY_PRINT instead of JSON_PRETTY_PRINT //-->
+            <property name="allowFullyQualifiedGlobalConstants" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array" value="app=>Desirebull"/>
+        </properties>
+    </rule>
 </ruleset>
