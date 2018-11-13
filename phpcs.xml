@@ -6,12 +6,8 @@
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
 
-    <!-- Ignore Laravel files -->
-    <exclude-pattern>Kernel.php</exclude-pattern>
-    <exclude-pattern>app/Http/Controllers/</exclude-pattern>
-    <exclude-pattern>app/Http/Middleware/</exclude-pattern>
-    <exclude-pattern>app/Providers/</exclude-pattern>
-    <exclude-pattern>app/Exceptions/</exclude-pattern>
+    <!-- Exclude files? -->
+    <exclude-pattern>vendor</exclude-pattern>
 
     <!-- Show colors in console -->
     <arg value="-colors"/>
