@@ -57,7 +57,7 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
-            <property name="rootNamespaces" type="array" value="app=>Desirebull"/>
+            <!--property name="rootNamespaces" type="array" value="app=>YourNamespace"/-->
         </properties>
     </rule>
 </ruleset>
