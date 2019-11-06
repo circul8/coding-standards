@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<ruleset name="Desirebull API">
+<ruleset name="Circul8 Coding Standards">
     <!-- Scan directory -->
-    <file>app</file>
+    <file>src</file>
 
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
@@ -21,6 +21,8 @@
     <!-- We use tabs -->
     <rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
 
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
     <rule ref="Squiz.WhiteSpace.FunctionSpacing" >
         <properties>
             <property name="spacing" value="2" /><!-- Add 2 lines at the beginning of each method -->
@@ -32,7 +34,9 @@
     <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
         <!-- Allow new Class; instead of new Class(); //-->
         <exclude name="SlevomatCodingStandard.ControlStructures.NewWithParentheses.MissingParentheses"/>
-        <!-- Allow AbstractClass naming. //-->
+        <!-- Allow Exceptions naming, eg: CustomException. //-->
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
+        <!-- Allow AbstractClass naming, eg: AbstractCustomClass. //-->
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
         <!-- Allow echo() instead of \echo() //-->
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions"/>
@@ -42,6 +46,8 @@
         <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison"/>
         <!-- Disallow one line property annotations /-->
         <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
+        <!-- Allow short ternary operator "something ?: else" /-->
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
         <properties>
@@ -49,11 +55,30 @@
             <property name="allowFullyQualifiedGlobalClasses" value="true"/>
             <!-- Force \JSON_PRETTY_PRINT instead of JSON_PRETTY_PRINT //-->
             <property name="allowFullyQualifiedGlobalConstants" value="true"/>
+            <!-- Force \Exceptions instead of Exception //-->
+            <property name="allowFullyQualifiedExceptions" value="true"/>
         </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
+        <properties>
+            <!-- Force 2 lines after last trait use //-->
+            <property name="linesCountAfterLastUse" value="2"/>
+            <!-- Force 1 lines after last trait use if the trait is the only use. //-->
+            <property name="linesCountAfterLastUseWhenLastInClass" value="1"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
+        <properties>
+            <!-- Do not alert unused values in forach loops //-->
+            <property name="ignoreUnusedValuesWhenOnlyKeysAreUsedInForeach" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly">
+        <exclude-pattern>app/Exceptions/Handler.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
-            <!--property name="rootNamespaces" type="array" value="app=>YourNamespace"/-->
+            <property name="rootNamespaces" type="array" value="app=>Desirebull,tests=>Tests"/>
         </properties>
     </rule>
 </ruleset>
