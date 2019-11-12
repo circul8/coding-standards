@@ -40,13 +40,13 @@
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
         <!-- Allow echo() instead of \echo() //-->
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions"/>
-        <!-- Allow usage of classes listed in "use" statement /-->
+        <!-- Allow usage of classes listed in "use" statement //-->
         <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
-        <!-- Disallow yoda comparisons (42 === $value) /-->
+        <!-- Disallow yoda comparisons (42 === $value) //-->
         <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison"/>
-        <!-- Disallow one line property annotations /-->
+        <!-- Disallow one line property annotations //-->
         <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
-        <!-- Allow short ternary operator "something ?: else" /-->
+        <!-- Allow short ternary operator "something ?: else" //-->
         <exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
@@ -76,9 +76,11 @@
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly">
         <exclude-pattern>app/Exceptions/Handler.php</exclude-pattern>
     </rule>
+	<!-- Edit if necessary 
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
-            <property name="rootNamespaces" type="array" value="app=>Desirebull,tests=>Tests"/>
+            <property name="rootNamespaces" type="array" value="app=>YourApp,tests=>Tests"/>
         </properties>
     </rule>
+	//-->
 </ruleset>
